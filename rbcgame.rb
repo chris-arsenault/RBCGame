@@ -10,6 +10,8 @@ class RBCGame < Gosu::Window
     super
     self.caption = 'Book Club Game'
     @art = Art.new(self)
+    @song = Gosu::Song.new('./music/battle.mp3')
+    @song.play(true)
 
     @camera = GameCamera.new
     @game_objects = [Player.new(window: self, x: 400, y: 300)]

@@ -24,15 +24,15 @@ class Player < GameObject
 
   end
   def mass
-    5
+    10
   end
 
   def radius
-    160/5
+    160*scale
   end
 
   def scale
-    0.2
+    0.3
   end
 
   def drawable?
