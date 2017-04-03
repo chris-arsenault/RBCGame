@@ -5,12 +5,8 @@ class UserSprite
     @window = window
     # image
     @width = @height = 160
-    @idle = Gosu::Image.load_tiles @window,
-                                   "player_160x160_idle.png",
-                                   @width, @height, true
-    @move = Gosu::Image.load_tiles @window,
-                                   "player_160x160_move.png",
-                                   @width, @height, true
+    @idle = Art.instance.player_idle
+    @move = Art.instance.player_moving
     # center image
     @x = @window.width/2  - @width/2
     @y = @window.height/2 - @height/2
@@ -20,7 +16,7 @@ class UserSprite
     @moving = false
     @bullets = []
     @mass = 5
-    @radius = 160
+    @radius = 160/5
   end
 
   def update
@@ -68,9 +64,9 @@ class UserSprite
     f = @frame
     image = @moving ? @move[f] : @idle[f]
     if @direction == :right
-      image.draw @x, @y, 1
+      image.draw @x, @y, 1, 0.2, 0.2
     else
-      image.draw @x + @width, @y, 1, -1, 1
+      image.draw @x + @width, @y, 1, -0.2, 0.2
     end
   end
 end

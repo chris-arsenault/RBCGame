@@ -5,9 +5,7 @@ class BulletSprite
     @window = window
     # image
     @width = @height = 160
-    @idle = Gosu::Image.load_tiles @window,
-                                   "player_160x160_idle.png",
-                                   @width, @height, true
+    @idle = Art.instance.bullet_sprite
 
     # direction and movement
     @direction = :right
@@ -16,7 +14,7 @@ class BulletSprite
     @friction = 0.99
     @moving = false
     @mass = 1.5
-    @radius = 160
+    @radius = 160/5
   end
 
   def update
@@ -48,7 +46,7 @@ class BulletSprite
     # so we can use the same frame calc.
     image = @idle[0]
     @scale = 1 + Random.rand(1)
-    image.draw @x, @y, @scale, @scale #1/@scale, 1/@scale
+    image.draw @x, @y, 1, 0.2, 0.2
     @window.draw_line(center_x, center_y, Gosu::Color.argb(0xff_ff0000), center_x + @vx*15, center_y + @vy*15, Gosu::Color.argb(0xff_ff0000), z = 0, mode = :default)
   end
 

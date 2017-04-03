@@ -1,6 +1,5 @@
 require 'gosu'
-require_relative './user_sprite.rb'
-require_relative './bullet_sprite.rb'
+Dir['./code/*.rb'].each {|file| require file }
 
 class RBCGame < Gosu::Window
   attr_accessor :gravity
@@ -8,7 +7,10 @@ class RBCGame < Gosu::Window
   def initialize width=800, height=600, fullscreen=false
     super
     self.caption = "Book Club Game"
-    @sprite = UserSprite.new self
+    @art = Art.new(self)
+    @sprite = UserSprite.new(self)
+
+
     @bullets = []
     @gravity = 0.5
     @G = -0.04
